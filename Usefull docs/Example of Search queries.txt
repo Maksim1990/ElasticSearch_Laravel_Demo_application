@@ -1,0 +1,42 @@
+### Search and filter query result
+GET ecommerce/_doc/_search
+{
+    "query": { 
+    "bool": { 
+      "must": [
+        { "match": { "name":   "Bread"        }}
+      ],
+      "filter": [
+          { "nested":{
+            "path":"categories",
+                  "query":{
+                     "term":{
+                        "categories.name":"health"
+                     }
+                  }
+          } 
+        }
+      ]
+    }
+  }
+}
+
+### Search and apply aggregation on query
+GET ecommerce/_doc/_search
+{
+    "query" : {
+        "match" : { "name" : "pasta" }
+    },
+    "aggs" : {
+        "categories" : {
+            "nested" : {
+                "path" : "categories"
+            },
+            "aggs" : {
+                "categories_count" : { "terms" : 
+                { "field" : "categories.name" } 
+                }
+            }
+        }
+    }
+}

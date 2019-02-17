@@ -1,0 +1,1 @@
+curl -H "Content-Type: application/json" -XPOST "http://localhost:9200/ecommerce/_doc/_bulk?pretty" --data-binary "@legacy-products.json"

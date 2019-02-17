@@ -1,0 +1,114 @@
+DELETE ecommerce
+
+PUT ecommerce 
+{}
+
+PUT ecommerce/_mapping/_doc 
+{
+        "properties" : {
+            "categories" : {
+            "type" : "nested",
+            "properties" : {
+              "name" : {
+                "type" : "text",
+                "fielddata": true,
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                }
+              }
+              
+              
+            }
+            },
+          "description" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "name" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "price" : {
+            "type" : "integer"
+          },
+          "quantity" : {
+            "type" : "long"
+          },
+          "status" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            },
+            "fielddata" : true
+          },
+          "tags" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+}
+
+PUT ecommerce/_mapping/_doc
+{
+  "properties": {
+    "status": { 
+      "type":     "text",
+      "fielddata": true
+    }
+  }
+}
+
+PUT ecommerce/_mapping/_doc
+{
+  "properties": {
+    "categories.name": { 
+      "type":     "text",
+      "fielddata": true
+    }
+  }
+}
+
+
+PUT ecommerce/_mapping/_doc
+{
+  "properties": {
+    "categories" : {
+            "type" : "nested",
+            "properties" : {
+              "name" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "fielddata": true,
+                    "ignore_above" : 256
+                  }
+                }
+              }
+            }
+            }
+  }
+}
+
+
